@@ -1,1 +1,1 @@
-process.stdin.on("data", data => { console.log(data)});
+process.stdin.on("data", data => { console.log(String(data))});
