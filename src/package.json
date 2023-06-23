@@ -1,0 +1,25 @@
+{
+  "name": "node_file-manager",
+  "version": "1.0.0",
+  "description": "This repository is the part of node course at RS-school",
+  "type": "module",
+  "scripts": {
+    "fs:add": "node src/fs/add.js",
+    "fs:cat": "node src/fs/cat.js",
+    "fs:cp": "node src/fs/cp.js",
+    "fs:mv": "node src/fs/mv.js",
+    "fs:rm": "node src/fs/rm.js",
+    "fs:rn": "node src/fs/rn.js",
+    "nwd:cd": "node src/nwd/cd.js",
+    "nwd:ls": "node src/nwd/ls.js",
+    "nwd:rn": "node src/nwd/rn.js",
+    "os": "node src/os/os.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evakerrigan/node_file-manager"
+  },
+  "author": "evakerrigan",
+  "license": "ISC",
+  "homepage": "https://github.com/evakerrigan/node_file-manager#readme"
+}
