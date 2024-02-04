@@ -35,7 +35,7 @@ process.stdin.on("data", (data) => {
     ls(currentDir);
   } else if (input.slice(0, 3) === "add") {
     const newFileName = input.slice(4);
-    add(newFileName);
+    add(newFileName, currentDir);
   } else if (input.slice(0, 2) === "os") {
     const args = input.slice(3).trim();
 
