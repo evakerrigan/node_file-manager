@@ -10,7 +10,7 @@ import { rn } from "./fs/rn.js";
 import { cp } from "./fs/cp.js";
 import { mv } from "./fs/mv.js";
 import { compressBrotli as compress } from "./compress/compress.js";
-// import { decompress } from "./compress/decompress.js";
+import { decompressBrotli as decompress } from "./compress/decompress.js";
 import { calcHash as hash } from "./hash/hash.js";
 import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
 
@@ -56,10 +56,15 @@ process.stdin.on("data", (data) => {
   } else if (input.slice(0, 8) === "compress") {
     const arrFiles = input.slice(9).split(" ");
     const startPath = arrFiles[0];
+    const endPath = arrFiles[1];
+    compress(startPath, endPath);
+  } else if (input.slice(0, 10) === "decompress") {
+    const arrFiles = input.slice(11).split(" ");
+    const startPath = arrFiles[0];
     console.log('startPath = ', startPath);
     const endPath = arrFiles[1];    
     console.log('endPath = ', endPath);
-    compress(startPath, endPath);
+    decompress(startPath, endPath);
   } else if (input.slice(0, 2) === "cp") {
     const arrFiles = input.slice(3).split(" ");
     const filePath = arrFiles[0];
