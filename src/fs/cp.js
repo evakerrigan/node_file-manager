@@ -1,31 +1,24 @@
-import fs from 'fs';
-import path from 'path';
-// import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { log } from "../utils/colorConsole/colorConsole.js";
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+export const cp = (filePath, newDir) => {
+  log.cyan("cp запускаем cp");
+  const fileName = path.basename(filePath);
+  const newFilePath = path.join(newDir, fileName);
 
-// const directory = path.join(__dirname, 'files');
-// const filesCopy = path.join(__dirname, 'files-copy');
-
-// const errorText = 'FS operation failed';
-
-const copy = async () => {
-    // Write your code here 
-
-        try {
-            // await fs.promises.mkdir(filesCopy);
-            // const items = await fs.promises.readdir(directory);
-            // for (const element of items) {
-            //     await fs.promises.copyFile(
-            //         path.join(directory, element),
-            //         path.join(filesCopy, element)
-            //     );
-            // }
-        } catch (err) {
-            // throw new Error(errorText);
-        }
-
+  try {
+    if (fs.existsSync(filePath)) {
+      const readStream = fs.createReadStream(filePath);
+      const writeStream = fs.createWriteStream(newFilePath);
+      readStream.pipe(writeStream);
+      readStream.on("end", () => {
+        log.green(`${fileName} был успешно скопирован в ${newDir}`);
+      });
+    } else {
+      log.red(`${fileName} не существует в каталоге!`);
+    }
+  } catch (err) {
+    log.red(`Ошибка при копировании файла: ${err}`);
+  }
 };
-
-await copy();
