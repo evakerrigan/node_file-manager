@@ -12,18 +12,24 @@ export const greet = (directory) => {
 };
 greet(currentDir);
 
+const exit = () => {
+  log.green(`Thank you for using File Manager, ${username}, goodbye!`);
+  process.exit();
+};
+
 process.stdin.on("data", (data) => {
   const input = String(data).trim();
-
-  if (input.slice(0, 2) === "up") {
-
+  if (input === ".exit") {
+    exit();
+  } else if (input.slice(0, 2) === "up") {
     currentDir = up(currentDir);
-
   } else if (input.slice(0, 2) === "cd") {
-
     console.log("currentDir = ", currentDir);
     const targetFolder = input.slice(3);
     currentDir = cd(currentDir, targetFolder);
-    
   }
+});
+
+process.on("SIGINT", function () {
+  exit();
 });
