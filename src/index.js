@@ -3,9 +3,12 @@ import { homedir as homedirOs } from "os";
 import { up } from "./nwd/up.js";
 import { cd } from "./nwd/cd.js";
 import { ls } from "./nwd/ls.js";
+import { add } from "./fs/add.js";
 import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
 
-const usernameCurrent = process.argv[2] ? process.argv[2].slice(11) : "Eva Kerrigan";
+const usernameCurrent = process.argv[2]
+  ? process.argv[2].slice(11)
+  : "Eva Kerrigan";
 log.green(`Welcome to the File Manager, Username ${usernameCurrent}!`);
 
 let currentDir = homedirOs();
@@ -30,8 +33,10 @@ process.stdin.on("data", (data) => {
     currentDir = cd(currentDir, targetFolder);
   } else if (input === "ls") {
     ls(currentDir);
+  } else if (input.slice(0, 3) === "add") {
+    const newFileName = input.slice(4);
+    add(newFileName);
   } else if (input.slice(0, 2) === "os") {
-
     const args = input.slice(3).trim();
 
     if (args.length === 0) {
