@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const cd = (currentDir, targetFolder) => {
@@ -7,7 +7,6 @@ export const cd = (currentDir, targetFolder) => {
 
   if (!targetFolder) {
     log.red("cd Please provide the name of the folder to enter.");
-    //process.exit(1);
   }
 
   const newDir = path.join(currentDir, targetFolder);
@@ -23,5 +22,4 @@ export const cd = (currentDir, targetFolder) => {
     );
     return currentDir;
   }
-
 };

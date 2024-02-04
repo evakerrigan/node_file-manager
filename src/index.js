@@ -27,6 +27,8 @@ process.stdin.on("data", (data) => {
     console.log("currentDir = ", currentDir);
     const targetFolder = input.slice(3);
     currentDir = cd(currentDir, targetFolder);
+  } else {
+    log.red(`Invalid input: ${input}`);
   }
 });
 
