@@ -1,5 +1,25 @@
-// const os = require('os');
+import os from "os";
+import { log } from "../utils/colorConsole/colorConsole.js";
 
-// os --EOL;
+export const EOL = () => {
+  log.yellow(`EOL: ${os.EOL}`);
+};
 
-// console.log('os --EOL = ', os);
+export const cpus = () => {
+  const cpus = os.cpus();
+  cpus.forEach((cpu, index) => {
+    log.yellow(`CPU ${index + 1}: ${cpu.model} @ ${cpu.speed}GHz`);
+  });
+};
+
+export const homedir = () => {
+  log.yellow(`Homedir: ${os.homedir()}`);
+};
+
+export const username = () => {
+  log.yellow(`Username: ${os.userInfo().username}`);
+};
+
+export const architecture = () => {
+  log.yellow(`Architecture: ${os.arch()}`);
+};
