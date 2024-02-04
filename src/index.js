@@ -4,6 +4,7 @@ import { up } from "./nwd/up.js";
 import { cd } from "./nwd/cd.js";
 import { ls } from "./nwd/ls.js";
 import { add } from "./fs/add.js";
+import { rm } from "./fs/rm.js";
 import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
 
 const usernameCurrent = process.argv[2]
@@ -36,6 +37,9 @@ process.stdin.on("data", (data) => {
   } else if (input.slice(0, 3) === "add") {
     const newFileName = input.slice(4);
     add(newFileName, currentDir);
+  } else if (input.slice(0, 2) === "rm") {
+    const fileName = input.slice(3);
+    rm(fileName, currentDir);
   } else if (input.slice(0, 2) === "os") {
     const args = input.slice(3).trim();
 
