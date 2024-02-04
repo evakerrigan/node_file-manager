@@ -5,6 +5,7 @@ import { cd } from "./nwd/cd.js";
 import { ls } from "./nwd/ls.js";
 import { add } from "./fs/add.js";
 import { rm } from "./fs/rm.js";
+import { cat } from "./fs/cat.js";
 import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
 
 const usernameCurrent = process.argv[2]
@@ -30,16 +31,19 @@ process.stdin.on("data", (data) => {
   } else if (input.slice(0, 2) === "up") {
     currentDir = up(currentDir);
   } else if (input.slice(0, 2) === "cd") {
-    const targetFolder = input.slice(3);
+    const targetFolder = input.slice(3).trim();
     currentDir = cd(currentDir, targetFolder);
   } else if (input === "ls") {
     ls(currentDir);
   } else if (input.slice(0, 3) === "add") {
-    const newFileName = input.slice(4);
+    const newFileName = input.slice(4).trim();
     add(newFileName, currentDir);
   } else if (input.slice(0, 2) === "rm") {
-    const fileName = input.slice(3);
+    const fileName = input.slice(3).trim();
     rm(fileName, currentDir);
+  } else if (input.slice(0, 3) === "cat") {
+    const fileName = input.slice(4).trim();
+    cat(fileName, currentDir);
   } else if (input.slice(0, 2) === "os") {
     const args = input.slice(3).trim();
 
