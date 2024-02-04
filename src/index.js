@@ -9,6 +9,9 @@ import { cat } from "./fs/cat.js";
 import { rn } from "./fs/rn.js";
 import { cp } from "./fs/cp.js";
 import { mv } from "./fs/mv.js";
+// import { compress } from "./compress/compress.js";
+// import { decompress } from "./compress/decompress.js";
+import { calcHash as hash } from "./hash/hash.js";
 import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
 
 const usernameCurrent = process.argv[2]
@@ -47,6 +50,9 @@ process.stdin.on("data", (data) => {
   } else if (input.slice(0, 3) === "cat") {
     const fileName = input.slice(4).trim();
     cat(fileName, currentDir);
+  } else if (input.slice(0, 4) === "hash") {
+    const filePath = input.slice(5).trim();
+    hash(filePath);
   } else if (input.slice(0, 2) === "cp") {
     const arrFiles = input.slice(3).split(" ");
     const filePath = arrFiles[0];
