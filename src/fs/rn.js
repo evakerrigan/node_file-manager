@@ -6,16 +6,21 @@ export const rn = (oldFileName, newFileName, currentDir) => {
   const oldFilePath = path.join(currentDir, oldFileName);
   const newFilePath = path.join(currentDir, newFileName);
   log.cyan("run rn");
-  try {
-    if (fs.existsSync(oldFilePath)) {
-      fs.rename(oldFilePath, newFilePath, (err) => {
-        if (err) throw err;
-        log.green(`${oldFileName} has been successfully renamed to ${newFileName}`);
-      });
-    } else {
+
+  fs.access(oldFilePath, fs.constants.F_OK, (err) => {
+    if (err) {
       log.red(`${oldFileName} does not exist in the directory!`);
+      return;
     }
-  } catch (err) {
-    log.red(`Error renaming the file: ${err}`);
-  }
+
+    fs.rename(oldFilePath, newFilePath, (err) => {
+      if (err) {
+        log.red(`Error renaming the file: ${err}`);
+        return;
+      }
+      log.green(
+        `${oldFileName} has been successfully renamed to ${newFileName}`
+      );
+    });
+  });
 };
