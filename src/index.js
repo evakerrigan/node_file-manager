@@ -16,8 +16,8 @@ import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
 
 const usernameCurrent = process.argv[2]
   ? process.argv[2].slice(11)
-  : "Eva Kerrigan";
-log.green(`Welcome to the File Manager, Username ${usernameCurrent}!`);
+  : "Anonimous";
+log.green(`Welcome to the File Manager, ${usernameCurrent}!`);
 
 let currentDir = homedirOs();
 export const greet = (directory) => {
