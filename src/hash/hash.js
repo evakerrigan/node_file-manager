@@ -1,18 +1,23 @@
 import fs from "fs";
 import crypto from "crypto";
 import { log } from "../utils/colorConsole/colorConsole.js";
+import path from "path";
 
-export const calcHash = (filePath) => {
+export const calcHash = (filePath, currentDir) => {
   log.cyan("run hash");
 
-  fs.access(filePath, fs.constants.F_OK, (err) => {
+  const newfilePath = path.isAbsolute(filePath)
+  ? filePath
+  : path.join(currentDir, filePath);
+
+  fs.access(newfilePath, fs.constants.F_OK, (err) => {
     if (err) {
       log.red("File does not exist");
       return;
-    }
+    }  
 
     const hash = crypto.createHash("sha256");
-    const input = fs.createReadStream(filePath);
+    const input = fs.createReadStream(newfilePath);
 
     input.on("readable", () => {
       const data = input.read();

@@ -57,7 +57,7 @@ process.stdin.on("data", (data) => {
     greet(currentDir);
   } else if (input.slice(0, 4) === "hash") {
     const filePath = input.slice(5).trim();
-    hash(filePath);
+    hash(filePath, currentDir);
     greet(currentDir);
   } else if (input.slice(0, 8) === "compress") {
     const arrFiles = input.slice(9).split(" ");
