@@ -10,19 +10,11 @@ export const cd = (currentDir, targetFolder) => {
     return currentDir;
   }
 
-  const newDir = path.join(currentDir, targetFolder);
-
   try {
-    if (fs.existsSync(newDir) && fs.lstatSync(newDir).isDirectory()) {
-      process.chdir(newDir);
-      log.green(`cd Successfully entered the folder: ${newDir}`);
-      return newDir;
-    } else {
-      log.red(
-        `cd The folder "${targetFolder}" does not exist in the current directory.`
-      );
-      return currentDir;
-    }
+    const newDir = path.join(currentDir, targetFolder);
+    process.chdir(newDir);
+    log.green(`cd Successfully entered the folder: ${newDir}`);
+    return newDir;
   } catch (error) {
     log.red(`Operation failed: ${error.message}`);
     return currentDir;
