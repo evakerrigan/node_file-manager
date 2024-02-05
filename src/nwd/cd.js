@@ -10,8 +10,11 @@ export const cd = (currentDir, targetFolder) => {
     return currentDir;
   }
 
+  const newDir = path.isAbsolute(targetFolder)
+    ? targetFolder
+    : path.join(currentDir, targetFolder);
+
   try {
-    const newDir = path.join(currentDir, targetFolder);
     process.chdir(newDir);
     log.green(`cd Successfully entered the folder: ${newDir}`);
     return newDir;
