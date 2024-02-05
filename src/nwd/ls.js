@@ -2,7 +2,7 @@ import { readdir } from "fs/promises";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const ls = async (currentDir) => {
-  log.cyan(`ls зашли в ls`);
+  log.cyan(`run ls`);
   try {
     const files = await readdir(currentDir, { withFileTypes: true });
     const displayFiles = files

@@ -3,7 +3,7 @@ import path from "path";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const cd = (currentDir, targetFolder) => {
-  log.cyan("cd запускаем cd");
+  log.cyan("run cd");
 
   if (!targetFolder) {
     log.red("cd Please provide the name of the folder to enter.");

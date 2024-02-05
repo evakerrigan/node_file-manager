@@ -4,7 +4,7 @@ import { pipeline } from "stream/promises";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const compressBrotli = async (startPath, endPath) => {
-  log.cyan("compress запускаем compress");
+  log.cyan("run compress");
   const readStream = fs.createReadStream(startPath);
   const writeStream = fs.createWriteStream(endPath);
   const brotliCompress = createBrotliCompress();

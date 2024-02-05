@@ -4,7 +4,7 @@ import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const cat = (fileName, currentDir) => {
   const fullFilePath = path.join(currentDir, fileName);
-  log.cyan("cat запускаем cat");
+  log.cyan("run cat");
   try {
     if (fs.existsSync(fullFilePath)) {
       const readStream = fs.createReadStream(fullFilePath, { encoding: "utf8" });
@@ -13,13 +13,13 @@ export const cat = (fileName, currentDir) => {
         data += chunk; 
       });
       readStream.on('end', () => {
-        log.green(`Содержимое файла ${fileName}:`);
+        log.green(`The content of the file ${fileName}:`);
         console.log(data); 
       });
     } else {
-      log.red(`${fileName} не существует в каталоге!`);
+      log.red(`${fileName} does not exist in the directory!`);
     }
   } catch (err) {
-    log.red(`Ошибка при чтении файла: ${err}`);
+    log.red(`Error reading the file: ${err}`);
   }
 };

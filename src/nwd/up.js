@@ -3,7 +3,7 @@ import { sep } from "path";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const up = (currentDir) => {
-  log.cyan(`up зашли в up`);
+  log.cyan(`run up`);
 
   if (!currentDir) {
     log.red("Invalid input: Please provide the current directory.");

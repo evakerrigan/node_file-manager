@@ -3,10 +3,10 @@ import crypto from "crypto";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const calcHash = (filePath) => {
-  log.cyan("hash запускаем hash");
+  log.cyan("run hash");
 
   if (!fs.existsSync(filePath)) {
-    log.red("Файл не существует");
+    log.red("File does not exist");
     return;
   }
 
@@ -24,9 +24,9 @@ export const calcHash = (filePath) => {
     });
 
     input.on("error", (err) => {
-      log.red(`Ошибка при чтении файла: ${err}`);
+      log.red(`Error reading the file: ${err}`);
     });
   } catch (err) {
-    log.red(`Ошибка при создании потока чтения файла: ${err}`);
+    log.red(`Error creating the file read stream: ${err}`);
   }
 };

@@ -3,7 +3,7 @@ import path from "path";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const mv = (filePath, newDir) => {
-  log.cyan("mv запускаем mv");
+  log.cyan("run mv");
   const fileName = path.basename(filePath);
   const newFilePath = path.join(newDir, fileName);
 
@@ -13,13 +13,13 @@ export const mv = (filePath, newDir) => {
       const writeStream = fs.createWriteStream(newFilePath);
       readStream.pipe(writeStream);
       readStream.on("end", () => {
-        log.green(`${fileName} был успешно перемещен в ${newDir}`);
+        log.green(`${fileName} has been successfully moved to ${newDir}`);
         fs.unlinkSync(filePath);
       });
     } else {
-      log.red(`${fileName} не существует в каталоге!`);
+      log.red(`${fileName} does not exist in the directory!`);
     }
   } catch (err) {
-    log.red(`Ошибка при перемещении файла: ${err}`);
+    log.red(`Error moving the file: ${err}`);
   }
 };

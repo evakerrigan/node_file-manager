@@ -4,17 +4,17 @@ import path from "path";
 
 export const rm = (fileName, currentDir) => {
   const filePath = path.join(currentDir, fileName);
-  log.cyan("remove запускаем remove");
+  log.cyan("run remove");
   try {
     if (fs.existsSync(filePath)) {
       fs.unlink(filePath, (err) => {
         if (err) throw err;
-        log.green(`${fileName} был успешно удален из каталога ${currentDir}!`);
+        log.green(`${fileName} has been successfully deleted from the directory ${currentDir}!`);
       });
     } else {
-      log.red(`${fileName} не существует в каталоге!`);
+      log.red(`${fileName} does not exist in the directory!`);
     }
   } catch (err) {
-    log.red(`Ошибка при удалении файла: ${err}`);
+    log.red(`Error deleting the file: ${err}`);
   }
 };

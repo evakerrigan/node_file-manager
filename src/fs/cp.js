@@ -3,7 +3,7 @@ import path from "path";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const cp = (filePath, newDir) => {
-  log.cyan("cp запускаем cp");
+  log.cyan("run cp");
   const fileName = path.basename(filePath);
   const newFilePath = path.join(newDir, fileName);
 
@@ -13,12 +13,12 @@ export const cp = (filePath, newDir) => {
       const writeStream = fs.createWriteStream(newFilePath);
       readStream.pipe(writeStream);
       readStream.on("end", () => {
-        log.green(`${fileName} был успешно скопирован в ${newDir}`);
+        log.green(`${fileName} has been successfully copied to ${newDir}`);
       });
     } else {
-      log.red(`${fileName} не существует в каталоге!`);
+      log.red(`${fileName} does not exist in the directory!`);
     }
   } catch (err) {
-    log.red(`Ошибка при копировании файла: ${err}`);
+    log.red(`Error copying the file: ${err}`);
   }
 };
