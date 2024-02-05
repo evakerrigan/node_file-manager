@@ -8,7 +8,6 @@ export const rn = (oldFileName, newFileName, currentDir) => {
   ? oldFileName
   : path.join(currentDir, oldFileName);
 
-  // const oldFilePath = path.join(currentDir, oldFileName);
   const newFilePath = path.join(currentDir, newFileName);
   log.cyan("run rn");
 
