@@ -8,7 +8,7 @@ export const EOL = () => {
 export const cpus = () => {
   const cpus = os.cpus();
   cpus.forEach((cpu, index) => {
-    log.yellow(`CPU ${index + 1}: ${cpu.model} @ ${cpu.speed}GHz`);
+    log.yellow(`CPU ${index + 1}: ${cpu.model} @ ${cpu.speed/1000}GHz`);
   });
 };
 
