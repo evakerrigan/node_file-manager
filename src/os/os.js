@@ -2,7 +2,7 @@ import os from "os";
 import { log } from "../utils/colorConsole/colorConsole.js";
 
 export const EOL = () => {
-  log.yellow(`EOL: ${os.EOL}`);
+  log.yellow(`EOL: ${JSON.stringify(os.EOL)}`);
 };
 
 export const cpus = () => {
