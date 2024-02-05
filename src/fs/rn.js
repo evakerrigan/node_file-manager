@@ -3,7 +3,12 @@ import { log } from "../utils/colorConsole/colorConsole.js";
 import path from "path";
 
 export const rn = (oldFileName, newFileName, currentDir) => {
-  const oldFilePath = path.join(currentDir, oldFileName);
+
+  const oldFilePath = path.isAbsolute(oldFileName)
+  ? oldFileName
+  : path.join(currentDir, oldFileName);
+
+  // const oldFilePath = path.join(currentDir, oldFileName);
   const newFilePath = path.join(currentDir, newFileName);
   log.cyan("run rn");
 
