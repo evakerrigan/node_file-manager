@@ -8,12 +8,14 @@ export const compressBrotli = async (startPath, endPath) => {
   log.cyan("run compress");
 
   try {
-    if (!fs.existsSync(startPath)) {
+    try {
+      await fs.promises.access(startPath);
+    } catch (error) {
       log.red(`Error: Source file '${startPath}' does not exist.`);
       return;
     }
 
-    const stats = fs.statSync(startPath);
+    const stats = await fs.promises.stat(startPath);
     if (!stats.isFile()) {
       log.red(`Error: '${startPath}' is not a file.`);
       return;
@@ -22,8 +24,10 @@ export const compressBrotli = async (startPath, endPath) => {
     const endPathWithExt = endPath.endsWith(".br") ? endPath : `${endPath}.br`;
 
     const outputDir = dirname(endPathWithExt);
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
+    try {
+      await fs.promises.access(outputDir);
+    } catch (error) {
+      await fs.promises.mkdir(outputDir, { recursive: true });
     }
 
     const readStream = fs.createReadStream(startPath);
