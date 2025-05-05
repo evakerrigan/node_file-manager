@@ -1,4 +1,4 @@
-import { log } from "./utils/colorConsole/colorConsole.js";
+import { log } from "./utils/colorConsole.js";
 import { homedir as homedirOs } from "os";
 import { up, cd, ls } from "./nwd/index.js";
 import { add, rm, cat, rn, cp, mv } from "./fs/index.js";

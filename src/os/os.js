@@ -1,5 +1,5 @@
 import os from "os";
-import { log } from "../utils/colorConsole/colorConsole.js";
+import { log } from "../utils/colorConsole.js";
 
 export const EOL = () => {
   log.yellow(`EOL: ${JSON.stringify(os.EOL)}`);

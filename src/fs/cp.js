@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { log } from "../utils/colorConsole/colorConsole.js";
+import { log } from "../utils/colorConsole.js";
 
 export const cp = (filePath, newDir) => {
   log.cyan("run cp");

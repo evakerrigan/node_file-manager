@@ -1,7 +1,7 @@
 import fs from "fs";
 import crypto from "crypto";
-import { log } from "../utils/colorConsole/colorConsole.js";
 import path from "path";
+import { log } from "../utils/colorConsole.js";
 
 export const calcHash = (filePath, currentDir) => {
   log.cyan("run hash");

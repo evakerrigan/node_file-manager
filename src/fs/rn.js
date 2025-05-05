@@ -1,9 +1,8 @@
 import fs from "fs";
-import { log } from "../utils/colorConsole/colorConsole.js";
 import path from "path";
+import { log } from "../utils/colorConsole.js";
 
 export const rn = (oldFileName, newFileName, currentDir) => {
-  
   const oldFilePath = path.isAbsolute(oldFileName)
     ? oldFileName
     : path.join(currentDir, oldFileName);

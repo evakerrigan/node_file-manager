@@ -1,6 +1,6 @@
-import { greet } from "../index.js";
 import { sep } from "path";
-import { log } from "../utils/colorConsole/colorConsole.js";
+import { greet } from "../index.js";
+import { log } from "../utils/colorConsole.js";
 
 export const up = (currentDir) => {
   log.cyan(`run up`);
@@ -27,5 +27,4 @@ export const up = (currentDir) => {
     log.red(`Operation failed: ${error.message}`);
     return currentDir;
   }
-  
 };

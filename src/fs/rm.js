@@ -1,5 +1,5 @@
 import fs from "fs";
-import { log } from "../utils/colorConsole/colorConsole.js";
+import { log } from "../utils/colorConsole.js";
 import path from "path";
 
 export const rm = (filePath, currentDir) => {
@@ -7,8 +7,8 @@ export const rm = (filePath, currentDir) => {
   log.cyan("run remove");
 
   const newPath = path.isAbsolute(filePath)
-  ? filePath
-  : path.join(currentDir, filePath);
+    ? filePath
+    : path.join(currentDir, filePath);
 
   fs.access(newPath, fs.constants.F_OK, (err) => {
     if (err) {

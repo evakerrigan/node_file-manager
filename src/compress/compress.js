@@ -1,7 +1,7 @@
 import fs from "fs";
 import { createBrotliCompress } from "zlib";
 import { pipeline } from "stream/promises";
-import { log } from "../utils/colorConsole/colorConsole.js";
+import { log } from "../utils/colorConsole.js";
 
 export const compressBrotli = async (startPath, endPath) => {
   log.cyan("run compress");

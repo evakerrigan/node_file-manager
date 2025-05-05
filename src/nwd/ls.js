@@ -1,5 +1,5 @@
 import { readdir } from "fs/promises";
-import { log } from "../utils/colorConsole/colorConsole.js";
+import { log } from "../utils/colorConsole.js";
 
 export const ls = async (currentDir) => {
   log.cyan(`run ls`);
