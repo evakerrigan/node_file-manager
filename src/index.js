@@ -61,14 +61,24 @@ process.stdin.on("data", (data) => {
     greet(currentDir);
   } else if (input.slice(0, 8) === "compress") {
     const arrFiles = input.slice(9).split(" ");
-    const startPath = arrFiles[0];
-    const endPath = arrFiles[1];
+    const [startPath, endPath] = arrFiles;
+    if (!startPath || !endPath) {
+      log.red(
+        "Invalid input: Please provide both source and destination paths."
+      );
+      return;
+    }
     compress(startPath, endPath);
     greet(currentDir);
   } else if (input.slice(0, 10) === "decompress") {
     const arrFiles = input.slice(11).split(" ");
-    const startPath = arrFiles[0];
-    const endPath = arrFiles[1];
+    const [startPath, endPath] = arrFiles;
+    if (!startPath || !endPath) {
+      log.red(
+        "Invalid input: Please provide both source and destination paths."
+      );
+      return;
+    }
     decompress(startPath, endPath);
     greet(currentDir);
   } else if (input.slice(0, 2) === "cp") {

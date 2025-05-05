@@ -2,22 +2,39 @@ import fs from "fs";
 import { createBrotliDecompress } from "zlib";
 import { pipeline } from "stream/promises";
 import { log } from "../utils/colorConsole.js";
+import { dirname } from "path";
 
 export const decompressBrotli = async (startPath, endPath) => {
   log.cyan("run decompress");
 
-  if (!startPath.endsWith(".br")) {
-    log.red(
-      `Error: File '${startPath}' is not a compressed file. Expected .br extension.`
-    );
-    return;
-  }
+  try {    
+    if (!startPath.endsWith(".br")) {
+      log.red(
+        `Error: File '${startPath}' is not a compressed file. Expected .br extension.`
+      );
+      return;
+    }
+   
+    if (!fs.existsSync(startPath)) {
+      log.red(`Error: Source file '${startPath}' does not exist.`);
+      return;
+    }
+    
+    const stats = fs.statSync(startPath);
+    if (!stats.isFile()) {
+      log.red(`Error: '${startPath}' is not a file.`);
+      return;
+    }
+   
+    const outputDir = dirname(endPath);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
 
-  const readStream = fs.createReadStream(startPath);
-  const writeStream = fs.createWriteStream(endPath);
-  const brotliDecompress = createBrotliDecompress();
+    const readStream = fs.createReadStream(startPath);
+    const writeStream = fs.createWriteStream(endPath);
+    const brotliDecompress = createBrotliDecompress();
 
-  try {
     await pipeline(readStream, brotliDecompress, writeStream);
     log.green(`File decompressed and written to ${endPath}`);
   } catch (err) {
