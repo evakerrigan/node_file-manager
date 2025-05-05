@@ -2,7 +2,6 @@ import fs from "fs";
 import { createBrotliDecompress } from "zlib";
 import { pipeline } from "stream/promises";
 import { log } from "../utils/colorConsole.js";
-// import { join, dirname, basename } from "path";
 
 export const decompressBrotli = async (startPath, endPath) => {
   log.cyan("run decompress");

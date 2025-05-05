@@ -3,7 +3,6 @@ import { log } from "../utils/colorConsole.js";
 import path from "path";
 
 export const rm = (filePath, currentDir) => {
-  //const filePath = path.join(currentDir, fileName);
   log.cyan("run remove");
 
   const newPath = path.isAbsolute(filePath)
