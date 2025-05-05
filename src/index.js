@@ -1,16 +1,8 @@
 import { log } from "./utils/colorConsole/colorConsole.js";
 import { homedir as homedirOs } from "os";
-import { up } from "./nwd/up.js";
-import { cd } from "./nwd/cd.js";
-import { ls } from "./nwd/ls.js";
-import { add } from "./fs/add.js";
-import { rm } from "./fs/rm.js";
-import { cat } from "./fs/cat.js";
-import { rn } from "./fs/rn.js";
-import { cp } from "./fs/cp.js";
-import { mv } from "./fs/mv.js";
-import { compressBrotli as compress } from "./compress/compress.js";
-import { decompressBrotli as decompress } from "./compress/decompress.js";
+import { up, cd, ls } from "./nwd/index.js";
+import { add, rm, cat, rn, cp, mv } from "./fs/index.js";
+import { compress, decompress } from "./compress/index.js";
 import { calcHash as hash } from "./hash/hash.js";
 import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
 
@@ -75,7 +67,7 @@ process.stdin.on("data", (data) => {
     const arrFiles = input.slice(3).split(" ");
     const filePath = arrFiles[0];
     const newDir = arrFiles[1];
-    if (!newDir || !filePath || (newDir.trim() === filePath.trim())) {
+    if (!newDir || !filePath || newDir.trim() === filePath.trim()) {
       log.red("Invalid input: Please provide a new directory.");
       return;
     }
@@ -85,7 +77,7 @@ process.stdin.on("data", (data) => {
     const arrFiles = input.slice(3).split(" ");
     const filePath = arrFiles[0];
     const newDir = arrFiles[1];
-    if (!newDir || !filePath || (newDir.trim() === filePath.trim())) {
+    if (!newDir || !filePath || newDir.trim() === filePath.trim()) {
       log.red("Invalid input: Please provide a new directory.");
       return;
     }
