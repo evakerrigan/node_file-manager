@@ -1,7 +1,7 @@
 import { log } from "./utils/colorConsole.js";
 import { homedir as homedirOs } from "os";
 import { up, cd, ls } from "./nwd/index.js";
-import { add, rm, cat, rn, cp, mv } from "./fs/index.js";
+import { add, rm, cat, rn, cp, mv, mkdir } from "./fs/index.js";
 import { compress, decompress } from "./compress/index.js";
 import { calcHash as hash } from "./hash/hash.js";
 import { EOL, architecture, cpus, homedir, username } from "./os/os.js";
@@ -38,6 +38,14 @@ process.stdin.on("data", (data) => {
   } else if (input.slice(0, 3) === "add") {
     const newFileName = input.slice(4).trim();
     add(newFileName, currentDir);
+    greet(currentDir);
+  } else if (input.slice(0, 5) === "mkdir") {
+    const dirName = input.slice(6).trim();
+    if (!dirName) {
+      log.red("Invalid input: Please provide a directory name.");
+      return;
+    }
+    mkdir(dirName, currentDir);
     greet(currentDir);
   } else if (input.slice(0, 2) === "rm") {
     const fileName = input.slice(3).trim();
