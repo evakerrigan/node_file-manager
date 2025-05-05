@@ -1,5 +1,6 @@
 import path from "path";
 import { log } from "../utils/colorConsole.js";
+import { platform } from "os";
 
 export const cd = (currentDir, targetFolder) => {
   log.cyan("run cd");
@@ -10,8 +11,9 @@ export const cd = (currentDir, targetFolder) => {
   }
 
   let newDir;
+  const isWindows = platform() === "win32";
 
-  if (/^[A-Za-z]:$/.test(targetFolder)) {
+  if (isWindows && /^[A-Za-z]:$/.test(targetFolder)) {
     newDir = targetFolder + "\\";
   } else {
     newDir = path.isAbsolute(targetFolder)
