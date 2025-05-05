@@ -1,4 +1,3 @@
-import fs from "fs";
 import path from "path";
 import { log } from "../utils/colorConsole.js";
 
@@ -10,9 +9,15 @@ export const cd = (currentDir, targetFolder) => {
     return currentDir;
   }
 
-  const newDir = path.isAbsolute(targetFolder)
-    ? targetFolder
-    : path.join(currentDir, targetFolder);
+  let newDir;
+
+  if (/^[A-Za-z]:$/.test(targetFolder)) {
+    newDir = targetFolder + "\\";
+  } else {
+    newDir = path.isAbsolute(targetFolder)
+      ? targetFolder
+      : path.join(currentDir, targetFolder);
+  }
 
   try {
     process.chdir(newDir);
