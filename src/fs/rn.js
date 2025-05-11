@@ -1,0 +1,34 @@
+import fs from "fs";
+import path from "path";
+import { log } from "../utils/colorConsole.js";
+
+export const rn = (oldFileName, newFileName, currentDir) => {
+  const oldFilePath = path.isAbsolute(oldFileName)
+    ? oldFileName
+    : path.join(currentDir, oldFileName);
+
+  if (!newFileName) {
+    log.red("New file name is not provided!");
+    return;
+  }
+
+  const newFilePath = path.join(currentDir, newFileName);
+  log.cyan("run rn");
+
+  fs.access(oldFilePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      log.red(`${oldFileName} does not exist in the directory!`);
+      return;
+    }
+
+    fs.rename(oldFilePath, newFilePath, (err) => {
+      if (err) {
+        log.red(`Error renaming the file: ${err}`);
+        return;
+      }
+      log.green(
+        `${oldFileName} has been successfully renamed to ${newFileName}`
+      );
+    });
+  });
+};

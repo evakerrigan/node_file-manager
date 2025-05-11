@@ -1,0 +1,17 @@
+{
+  "name": "node_file-manager",
+  "version": "1.0.0",
+  "description": "This repository is the part of node course at RS-school",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evakerrigan/node_file-manager"
+  },
+  "author": "evakerrigan",
+  "license": "ISC",
+  "homepage": "https://github.com/evakerrigan/node_file-manager#readme"
+}
